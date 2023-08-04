@@ -1,6 +1,7 @@
 # Tetris-Ruby
 A ruby challenge
 
+
 The objective of this project was to create an 'enhanced' tetris game in ruby.
 
 I decided to use unittesting for this project with rspec.
@@ -39,7 +40,7 @@ RSpec.describe MyTetris, do
     context "after pressing U key" do
     it 'rotates tetrino 90 degrees clockwise' do
         ...
-        expect(proc (@board.rotate_clockwise)).to 
+        expect(proc (@board.rotate_clockwise)).to
     end
 end
 ```
@@ -50,3 +51,11 @@ We can run this test with in the terminal with `bin/rspec`. If we do, we see tha
 ## Problem 1
 In your game, the player can press the ’u’ key to make the piece that is falling rotate 180 degrees.
 Since the method keybindings passes object @board.rotate_clockwise directly we can access it the same way.
+
+ Right off the bat I had trouble testing the rotate_clockwise method. I was getting an error that said "undefined method 'rotate_clockwise' for nil:NilClass". I was able to fix this by adding a new instance variable to the initialize method.
+
+## Run
+to run
+```bash
+ruby hw6runner.rb
+```
