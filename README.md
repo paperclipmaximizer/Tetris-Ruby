@@ -54,6 +54,11 @@ Since the method keybindings passes object @board.rotate_clockwise directly we c
 
  Right off the bat I had trouble testing the rotate_clockwise method. I was getting an error that said "undefined method 'rotate_clockwise' for nil:NilClass". I was able to fix this by adding a new instance variable to the initialize method.
 
+ ## Problem 2
+ Enhancement two is to add 3 new pieces to the game. The first piece is a small L, the second is a 1x5 line, and the third is a 3x2 L shape.
+
+ I added these new shapes by concatenating with the existing shapes. I also added a new method to the Piece class called 'next_piece' that returns a random piece from the array of pieces. I then had to make calls to store_current to store the current piece and next_piece to get the next piece. I also had to add a new instance variable to the initialize method to store the next piece. Finally, I added a set_board that shadows the provided set_board method to set the next piece. and a store_current shadowing the same function in the provided code.
+
 ## Run
 to run
 ```bash
