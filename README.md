@@ -59,6 +59,14 @@ Since the method keybindings passes object @board.rotate_clockwise directly we c
 
  I added these new shapes by concatenating with the existing shapes. I also added a new method to the Piece class called 'next_piece' that returns a random piece from the array of pieces. I then had to make calls to store_current to store the current piece and next_piece to get the next piece. I also had to add a new instance variable to the initialize method to store the next piece. Finally, I added a set_board that shadows the provided set_board method to set the next piece. and a store_current shadowing the same function in the provided code.
 
+ ## Problem 3
+    When the player pressed 'c', the player can spend 100 points for the next piece to spawn to be 1x1.
+    I implemented a cheat method in which does basic checks and flicks a boolean and queues the new piece.
+    I initialized the @cheated boolean.
+    I added cheated conditional to next_piece queuing method.
+    I found a hardcoded bug in store_current that prevented board from drawing a piece smaller than 3 wide. Fixed by making the index scale off locations.size.
+
+
 ## Run
 to run
 ```bash
