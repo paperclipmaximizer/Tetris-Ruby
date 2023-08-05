@@ -15,16 +15,27 @@ end
 class MyBoard < Board
   def initialize (game)
     super(game)
+    @cheated=false
     @current_block = MyPiece.next_piece(self)
   end
   def next_piece
-    @current_block = MyPiece.next_piece(self)
+    if @cheated
+      @current_block = MyPiece.new([[[0, 0]]], self)
+      @cheated = false
+    else @current_block = MyPiece.next_piece(self)
+    end
     @current_pos = nil
+  end
+  def cheat
+    if @score >= 100 && @current_block != MyPiece.new([[[0, 0]]], self)
+      @score -= 100
+      @cheated = true
+    end
   end
   def store_current
     locations = @current_block.current_rotation
     displacement = @current_block.position
-    (0..3).each{|index|
+    (0..locations.size-1).each{|index|
       current = locations[index];
       @grid[current[1]+displacement[1]][current[0]+displacement[0]] =
       @current_pos[index]
@@ -46,5 +57,6 @@ class MyTetris < Tetris
   def key_bindings
     super
     @root.bind('u', proc {@board.rotate_clockwise; @board.rotate_clockwise}) # rotate 180s
+    @root.bind('c', proc {@board.cheat}) # cheat
   end
 end
